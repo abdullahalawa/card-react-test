@@ -1,16 +1,38 @@
-export default function Card() {
+import { useState } from "react";
+import image1 from "../../images/andrew-heald-n9RZ0dCunpY-unsplash.jpg";
+
+export default function Card({ productInfo }) {
+  const { id, title, price, image, description, category } = productInfo;
+
+  let [counter, setCounter] = useState(0);
+
+  function addOneToCounter() {
+    setCounter(counter + 1);
+  }
+
+  function deleteOneFromCounter() {
+    setCounter(counter - 1);
+  }
+
   return (
     <>
       <div className="bg-white shadow-xl w-1/4 rounded overflow-hidden">
-        <img
-          className="w-full"
-          src="https://plus.unsplash.com/premium_photo-1714145990678-22654d741063?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="image"
-        />
+        <img className="w-full h-60 object-contain" src={image} alt="image" />
         <div className="card-info p-5">
-          <h2 className="text-lg font-bold">Card Title</h2>
-          <h3 className="text-sm font-semibold text-gray-600">Category</h3>
-          <p className="mt-6">Description</p>
+          <h2 className="text-lg font-bold">{title}</h2>
+          <h3 className="text-sm font-semibold text-gray-600">{category}</h3>
+          <p className="mt-6">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Exercitationem impedit
+          </p>
+
+          <div className="flex justify-around items-center py-3">
+            <i className="fa-solid fa-plus" onClick={addOneToCounter}></i>
+
+            <h2>{counter}</h2>
+
+            <i className="fa-solid fa-minus" onClick={deleteOneFromCounter}></i>
+          </div>
 
           <button className="bg-red-600 text-white px-4 py-1 rounded text-base uppercase mt-4 w-full">
             Delete Card
